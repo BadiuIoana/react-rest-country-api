@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navigation from "./components/Navigation/Navigation";
+import { Fragment, useState } from "react";
+import Homepage from "./components/Homepage/Homepage";
+import CountryDetails from "./components/CountryDetails";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [isDetailsPage, setDetailsPage] = useState(false);
+    const [contryDetails, setCountryDetails] = useState({});
+    const openDetailsContryHandler = () => {
+        setDetailsPage(true);
+    };
+
+    const exitDetailsCountryHandler = () => {
+        setDetailsPage(false);
+    };
+
+    return (
+        <Fragment>
+            <Navigation />
+            {!isDetailsPage && (
+                <Homepage
+                    openDetails={openDetailsContryHandler}
+                    detailsForContry={setCountryDetails}
+                />
+            )}
+            {isDetailsPage && (
+                <CountryDetails
+                    closeDetails={exitDetailsCountryHandler}
+                    country={contryDetails}
+                />
+            )}
+        </Fragment>
+    );
 }
 
 export default App;

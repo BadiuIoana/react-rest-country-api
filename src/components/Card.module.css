@@ -1,0 +1,29 @@
+.card {
+    background-color: hsl(var(--almost-white));
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-basis: 20%;
+    color: var(--dark-blue);
+    height: 350px;
+    padding: 0.8rem;
+}
+
+
+img {
+    display: block;
+    max-height: 7rem;
+    border: 1px solid hsl(var(--dark-blue));
+    border-radius: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+    font-weight: 700;
+}

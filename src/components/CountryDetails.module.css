@@ -1,0 +1,23 @@
+.wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 10rem
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+}
+
+.btnTransparent {
+    background-color: transparent;
+    border: 1px solid hsl(var(--dark-blue));
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: 'Amatic SC', cursive;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}

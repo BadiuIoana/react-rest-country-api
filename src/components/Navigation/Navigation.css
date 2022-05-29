@@ -1,0 +1,31 @@
+.navigation {
+    background-color: hsl(var(--white));
+    box-shadow: 0.2rem 0.2rem 5px hsl(var(--dark-grey), .2);
+}
+
+.wrapper {
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.wrapper > * {
+    flex-basis: 100%;
+}
+
+button{
+    max-width: 10rem;
+    border: none;
+    background: none;
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+
