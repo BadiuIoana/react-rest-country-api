@@ -1,79 +1,83 @@
 import { useEffect, useState, useMemo } from "react";
-import useHttp from "../../hooks/use-http";
 import Pagination from "../Pagination";
 import "./Homepage.css";
 import Card from "../Card";
+import SweetPagination from "sweetpagination";
+
 let PageSize = 20;
 
 const Homepage = (props) => {
     const [countries, setCountries] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const { isLoading, error, sendRequest: fetchCountries } = useHttp();
+    const [error, setError] = useState("");
+    const [currentPageData, setCurrentPageData] = useState([]);
+    console.log(currentPageData);
 
     useEffect(() => {
-        const transformCountriesData = (countriesData) => {
-            countriesData.map((country) => {
-                setCountries((prevState) => {
-                    return [
-                        ...prevState,
-                        {
-                            name: country.name.common,
-                            nativeName: country.name.nativeName, // Obiect cu Obiecte
-                            population: country.population,
-                            region: country.region,
-                            subregion: country.subregion,
-                            capital: country.capital,
-                            flag: country.flags.svg,
-                            tld: country.tld, //array de string-uri
-                            languages: country.languages, // Obiect, poate avea mai multe instante
-                        },
-                    ];
-                });
-            });
-        };
+        const fetchCountries = async () => {
+            try {
+                const response = await fetch(
+                    `https://restcountries.com/v3.1/all`
+                );
 
-        fetchCountries(
-            {
-                url: "https://restcountries.com/v3.1/all",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            },
-            transformCountriesData
-        );
-    }, [fetchCountries]);
+                if (!response.ok) {
+                    throw response.status;
+                }
+
+                const countriesData = await response.json();
+                let countriesAuXArray = [];
+
+                for (var key in countriesData) {
+                    countriesAuXArray.push({
+                        cca2: countriesData[key].cca2,
+                        name: countriesData[key].name.common,
+                        population: countriesData[key].population,
+                        region: countriesData[key].region,
+                        capital: countriesData[key].capital,
+                        flag: countriesData[key].flags.svg,
+                    });
+                }
+                setCountries(countriesAuXArray);
+            } catch (error) {
+                setError("Something went wrong, status code: " + error);
+            }
+        };
+        fetchCountries();
+    }, []);
 
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
         return countries.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage, countries]);
+    }, [currentPage]);
 
     return (
         <div className='container'>
             <div className='cards-wrapper'>
-                {isLoading && <p className='center'> Loading ...</p>}
+                {/* {isLoading && <p className='center'> Loading ...</p>} */}
                 {error && <p className='center error'> {error}</p>}
-                {!isLoading &&
-                    !error &&
-                    currentTableData.map((country) => {
-                        return (
-                            <Card
-                                country={country}
-                                openDetails={props.openDetails}
-                                closeDetails={props.closeDetails}
-                                detailsForContry={props.detailsForContry}
-                            />
-                        );
+                {!error &&
+                    currentPageData.map((country) => {
+                        return <Card country={country} key={country.cca2} />;
                     })}
             </div>
-            <Pagination
+            {/* <Pagination
                 className='pagination-bar'
-                currentPage={currentPage}
+                currentPage={currentPageData}
                 totalCount={countries.length}
                 pageSize={PageSize}
+                key={currentPage}
                 onPageChange={(page) => setCurrentPage(page)}
-            />
+            /> */}
+            <div>
+                <SweetPagination
+                    currentPageData={setCurrentPageData}
+                    dataPerPage={10}
+                    getData={countries}
+                    navigation={true}
+                    getStyle={"style-1"}
+                />
+            </div>
         </div>
     );
 };

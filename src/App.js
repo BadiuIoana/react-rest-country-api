@@ -3,33 +3,21 @@ import Navigation from "./components/Navigation/Navigation";
 import { Fragment, useState } from "react";
 import Homepage from "./components/Homepage/Homepage";
 import CountryDetails from "./components/CountryDetails";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
     const [isDetailsPage, setDetailsPage] = useState(false);
     const [contryDetails, setCountryDetails] = useState({});
-    const openDetailsContryHandler = () => {
-        setDetailsPage(true);
-    };
-
-    const exitDetailsCountryHandler = () => {
-        setDetailsPage(false);
-    };
-
+    //    <Link to='/details'>About</Link>
     return (
         <Fragment>
             <Navigation />
-            {!isDetailsPage && (
-                <Homepage
-                    openDetails={openDetailsContryHandler}
-                    detailsForContry={setCountryDetails}
-                />
-            )}
-            {isDetailsPage && (
-                <CountryDetails
-                    closeDetails={exitDetailsCountryHandler}
-                    country={contryDetails}
-                />
-            )}
+            <Router>
+                <Routes>
+                    <Route path='/:id' element={<CountryDetails />} />
+                    <Route path='/' element={<Homepage />} />
+                </Routes>
+            </Router>
         </Fragment>
     );
 }

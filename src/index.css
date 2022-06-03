@@ -8,10 +8,10 @@
 
 body {
   margin: 0;
-  font-family: 'Amatic SC', cursive;
+  font-family: 'Nunito Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: hsl(var(--light-grey), 0.2);
+  background-color: hsl(var(--light-grey), 0.1);
 }
 
 * {
