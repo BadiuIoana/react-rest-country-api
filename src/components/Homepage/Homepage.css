@@ -1,6 +1,7 @@
 .container {
     max-width: 90%;
     margin: 0 auto;
+    padding-bottom: 50px;
 }
 
 .cards-wrapper {
@@ -18,4 +19,23 @@
     color: hsl(0, 100%, 50%, 0.4);
 }
 
-/* Search form */
+.panel-actions {
+    max-width: 90%;
+    margin: 20px auto 10px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel-actions input#search {
+    font-family: 'Nunito Sans', sans-serif ;
+    padding: 10px;
+    border-radius: 6px;
+    border: 0.5px solid hsl(var(--dark-blue));
+}
+
+.panel-actions select {
+    font-family: 'Nunito Sans', sans-serif ;
+    padding: 10px;
+    border-radius: 6px;
+    border: 0.5px solid hsl(var(--dark-blue));
+}

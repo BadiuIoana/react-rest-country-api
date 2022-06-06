@@ -93,6 +93,10 @@ const CountryDetails = (props) => {
             languages={languages}
             currencies={currencies}
             borders={borders}
+            region={region}
+            capital={capital}
+            subregion={subregion}
+            population={population}
         />
     );
 };

@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
 import Card from "../Card";
 import SweetPagination from "sweetpagination";
@@ -7,6 +8,8 @@ const Homepage = () => {
     const [countries, setCountries] = useState([]);
     const [error, setError] = useState("");
     const [currentPageData, setCurrentPageData] = useState([]);
+    const navigate = useNavigate();
+
     const fetchCountries = async (url) => {
         try {
             const response = await fetch(url);
@@ -38,34 +41,45 @@ const Homepage = () => {
     }, []);
 
     const fetchByRegionHandler = () => {
+        setError("");
+        document.getElementById("search").value = ""; //reset search input
         const regionFilterValue =
             document.getElementById("select-region").value;
         if (regionFilterValue != "") {
             fetchCountries(
                 `https://restcountries.com/v3.1/region/${regionFilterValue}`
             );
+            navigate(`?region=${regionFilterValue}`);
+        } else {
+            navigate(`/`);
+            fetchCountries(`https://restcountries.com/v3.1/all`);
         }
     };
 
     const serachCountryByName = () => {
-        const value = document.getElementById("search").value;
+        setError("");
+        const value = document.getElementById("search").value; //reset select from regions
+        document.getElementById("select-region").value = "";
         if (value != "") {
             fetchCountries(`https://restcountries.com/v3.1/name/${value}`);
+            navigate(`#openseach`);
+        } else {
+            navigate(`/`);
+            fetchCountries(`https://restcountries.com/v3.1/all`);
         }
     };
 
     return (
         <div className='container'>
-            <select id='select-region' onChange={fetchByRegionHandler}>
-                <option value=''>Filter by region</option>
-                <option value='Africa'>Africa </option>
-                <option value='America'>America</option>
-                <option value='Asia'>Asia</option>
-                <option value='Europe'>Europe</option>
-                <option value='Oceania'>Oceania</option>
-            </select>
-            <form onSubmit={serachCountryByName} role='search'>
-                {/* <label for='search'>Search for stuff</label> */}
+            <div className='panel-actions'>
+                <select id='select-region' onChange={fetchByRegionHandler}>
+                    <option value=''>Filter by region</option>
+                    <option value='Africa'>Africa </option>
+                    <option value='America'>America</option>
+                    <option value='Asia'>Asia</option>
+                    <option value='Europe'>Europe</option>
+                    <option value='Oceania'>Oceania</option>
+                </select>
                 <input
                     id='search'
                     type='search'
@@ -73,8 +87,8 @@ const Homepage = () => {
                     required
                     onChange={serachCountryByName}
                 />
-                <button type='submit'>Go</button>
-            </form>
+            </div>
+
             <div className='cards-wrapper'>
                 {error && <p className='center error'> {error}</p>}
                 {!error &&
@@ -83,13 +97,15 @@ const Homepage = () => {
                     })}
             </div>
             <div>
-                <SweetPagination
-                    currentPageData={setCurrentPageData}
-                    dataPerPage={10}
-                    getData={countries}
-                    navigation={true}
-                    getStyle={"style-1"}
-                />
+                {!error && (
+                    <SweetPagination
+                        currentPageData={setCurrentPageData}
+                        dataPerPage={10}
+                        getData={countries}
+                        navigation={true}
+                        getStyle={"style-1"}
+                    />
+                )}
             </div>
         </div>
     );

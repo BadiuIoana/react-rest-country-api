@@ -23,8 +23,8 @@
 
 .flagImage {
     max-height: 600px;
+    height: unset;
     flex-basis: 30%;
-
 }
 
 .textWrapper {
@@ -82,16 +82,22 @@ ul.details li:last-of-type:after {
     .content {
         flex-direction: column;
         gap: 2rem;
-        align-items: right;
+        align-items: unset;
+        padding-top:30px;
     }
 
-    .content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 5rem;
+    .textWrapper {
+        flex-basis: 100%;
+        padding: 10px 40px;
     }
-    
+
+    .flagImage {
+        align-self: center;
+    }
+
+    .btnTransparent {
+        margin: 10px 0 20px 40px;
+    }
 }
 
 @media (max-width: 661px) {
@@ -105,11 +111,5 @@ ul.details li:last-of-type:after {
     
     .flagImage {
         flex-basis: 100%;
-    
     }
-    
-    .textWrapper {
-        flex-basis: 100%;
-    }
-
 }

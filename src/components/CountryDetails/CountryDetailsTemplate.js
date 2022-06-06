@@ -87,8 +87,9 @@ const CountryDetailsTemplate = (props) => {
                 className={classes.btnTransparent}
                 onClick={props.closeDetails}
             >
-                <FontAwesomeIcon icon={faLeftLong} />
-                <Link to='/'>ALL</Link>
+                <Link to='/'>
+                    <FontAwesomeIcon icon={faLeftLong} />
+                </Link>
             </button>
         </div>
     );
