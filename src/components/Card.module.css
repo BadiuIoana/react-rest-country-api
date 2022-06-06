@@ -8,18 +8,15 @@
     flex-basis: 17%;
     color: var(--dark-blue);
     height: 350px;
-    padding: 0.1rem;
+    padding: 2.1rem;
     text-align: center;
     box-shadow: 5px 5px 5px hsl(var(--dark-blue), 0.2), -5px -5px 5px hsl(var(--dark-blue), 0.2);
 }
 
 img {
     display: block;
-    max-height: 7rem;
-    max-width: 14rem;
-    border: 1px solid hsl(var(--dark-blue));
-    border-radius: 10px;
-
+    height: 7rem;
+    width: 10rem;
 }
 
 

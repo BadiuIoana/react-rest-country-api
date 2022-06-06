@@ -10,8 +10,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
 }
+
 
 .error {
     color: hsl(0, 100%, 50%, 0.4);
 }
+
+/* Search form */

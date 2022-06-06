@@ -2,7 +2,7 @@ import "./App.css";
 import Navigation from "./components/Navigation/Navigation";
 import { Fragment, useState } from "react";
 import Homepage from "./components/Homepage/Homepage";
-import CountryDetails from "./components/CountryDetails";
+import CountryDetails from "./components/CountryDetails/CountryDetails";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
