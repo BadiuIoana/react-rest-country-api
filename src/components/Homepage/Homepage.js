@@ -1,25 +1,14 @@
+import "./Homepage.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Homepage.css";
-import Card from "../Card";
+import Card from "../Card/Card";
 import SweetPagination from "sweetpagination";
-import { useContext } from "react";
-import DarkThemContext from "../../store/dark-theme-context";
 
 const Homepage = () => {
     const [countries, setCountries] = useState([]);
     const [error, setError] = useState("");
     const [currentPageData, setCurrentPageData] = useState([]);
     const navigate = useNavigate();
-    const [darkModeActivated, setDarkModeActivated] = useState(
-        JSON.parse(localStorage.getItem("dark-mode"))
-    );
-
-    const themeMode = useContext(DarkThemContext);
-
-    useEffect(() => {
-        setDarkModeActivated(JSON.parse(localStorage.getItem("dark-mode")));
-    }, [darkModeActivated]);
 
     const fetchCountries = async (url) => {
         try {
@@ -56,6 +45,7 @@ const Homepage = () => {
         document.getElementById("search").value = ""; //reset search input
         const regionFilterValue =
             document.getElementById("select-region").value;
+
         if (regionFilterValue != "") {
             fetchCountries(
                 `https://restcountries.com/v3.1/region/${regionFilterValue}`
@@ -71,6 +61,7 @@ const Homepage = () => {
         setError("");
         const value = document.getElementById("search").value; //reset select from regions
         document.getElementById("select-region").value = "";
+
         if (value != "") {
             fetchCountries(`https://restcountries.com/v3.1/name/${value}`);
             navigate(`#openseach`);
@@ -117,7 +108,7 @@ const Homepage = () => {
                             dataPerPage={10}
                             getData={countries}
                             navigation={true}
-                            getStyle={"style-1"}
+                            getStyle={"style-2"}
                         />
                     )}
                 </div>

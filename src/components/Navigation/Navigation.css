@@ -28,7 +28,6 @@ h1 {
     font-size: 2rem;
 }
 
-
 /* Dark Mode */
 .navigation.dark {
     background-color: hsl(var(--dark-blue));

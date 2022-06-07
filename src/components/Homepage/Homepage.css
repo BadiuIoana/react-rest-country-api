@@ -14,7 +14,6 @@
     margin-bottom: 2rem;
 }
 
-
 .error {
     color: hsl(0, 100%, 50%, 0.4);
 }
@@ -27,14 +26,7 @@
     justify-content: space-between;
 }
 
-.panel-actions input#search {
-    font-family: 'Nunito Sans', sans-serif ;
-    padding: 10px;
-    border-radius: 6px;
-    border: 0.5px solid hsl(var(--dark-blue));
-}
-
-.panel-actions select {
+.panel-actions input#search, .panel-actions select {
     font-family: 'Nunito Sans', sans-serif ;
     padding: 10px;
     border-radius: 6px;

@@ -1,7 +1,3 @@
-.dark{
-    background-color: hsl(var(--dark-blue)); 
-}
-
 .wrapper {
     max-width: 1000px;
     margin: 0 auto;

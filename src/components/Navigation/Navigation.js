@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import DarkThemContext from "../../store/dark-theme-context";
+
 const Navigation = () => {
     const themeMode = useContext(DarkThemContext);
     return (

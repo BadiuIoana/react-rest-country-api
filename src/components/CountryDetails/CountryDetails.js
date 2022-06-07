@@ -1,9 +1,9 @@
 import classes from "./CountryDetails.module.css";
+import CountryDetailsTemplate from "./CountryDetailsTemplate";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
-import CountryDetailsTemplate from "./CountryDetailsTemplate";
 
-const CountryDetails = (props) => {
+const CountryDetails = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -29,6 +29,7 @@ const CountryDetails = (props) => {
             setError("Something went wrong, status code: " + error);
         }
     }, [cca2]);
+
     useEffect(() => {
         fetchCountryHandler();
     }, [cca2, fetchCountryHandler]);
@@ -44,13 +45,15 @@ const CountryDetails = (props) => {
         languages,
         currencies,
         borders,
-    } = country;
+    } = country; //object destructuring
+
     let native_name;
     let official_name;
     let flag;
     let tld_array;
 
     if (Object.keys(country).length > 0) {
+        //Check if the useEffect hook completed the fetch function in order to continue using countries for display infp
         native_name = name.nativeName[Object.keys(name.nativeName)[0]].common;
         official_name = name.official;
         flag = flags.png;
