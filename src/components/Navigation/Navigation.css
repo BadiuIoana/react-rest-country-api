@@ -29,3 +29,12 @@ h1 {
 }
 
 
+/* Dark Mode */
+.navigation.dark {
+    background-color: hsl(var(--dark-blue));
+    box-shadow: 0.2rem 0.2rem 5px hsl(var(--dark-blue), .8);
+}
+
+.navigation.dark h1, .navigation.dark button {
+    color: #ffffff;
+}

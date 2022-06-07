@@ -13,6 +13,10 @@
     box-shadow: 5px 5px 5px hsl(var(--dark-blue), 0.2), -5px -5px 5px hsl(var(--dark-blue), 0.2);
 }
 
+.card.dark {
+    background-color: hsl(var(--dark-blue), 0.8);
+}
+
 img {
     display: block;
     height: 7rem;

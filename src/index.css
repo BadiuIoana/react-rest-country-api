@@ -23,3 +23,21 @@ code {
   font-family: Nunito Sans,
     monospace;
 }
+
+
+/* Dark Mode */
+.dark {
+  background-color: hsl(var(--dark-blue), 0.8);
+}
+
+.dark p, .dark h1, .dark ul li {
+  color: #ffffff;
+}
+
+.dark button{
+  color: #ffffff;
+}
+
+.dark button a {
+  color: #ffffff;
+}

@@ -1,11 +1,17 @@
 import classes from "./Card.module.css";
 import { useNavigate } from "react-router-dom";
+import darkThemeContext from "../store/dark-theme-context";
+import { useContext } from "react";
+
 const Card = (props) => {
     const navigate = useNavigate();
     const url = `/${props.country.cca2}`;
+    const darkTheme = useContext(darkThemeContext);
     return (
         <div
-            className={classes.card}
+            className={`${classes.card} ${
+                darkTheme.darkModeActivated ? classes.dark : null
+            }`}
             onClick={() =>
                 navigate(url, {
                     state: { cca2: props.country.cca2 },

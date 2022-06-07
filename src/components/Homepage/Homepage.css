@@ -21,7 +21,8 @@
 
 .panel-actions {
     max-width: 90%;
-    margin: 20px auto 10px auto;
+    padding-top: 20px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
 }
